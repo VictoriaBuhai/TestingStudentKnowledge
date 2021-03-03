@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingStudentKnowledge", "TestingStudentKnowledge\TestingStudentKnowledge.csproj", "{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingStudentKnowledge", "TestingStudentKnowledge\TestingStudentKnowledge.csproj", "{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingStudentKnowledge.Application", "TestingStudentKnowledge.Application", "{85F17DC3-491B-4333-AD8A-A633243881E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingStudentKnowledge.Domain", "TestingStudentKnowledge.Domain", "{5ABB2FA9-0EB1-4536-B098-37A4615D3A77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingStudentKnowledge.Infrastructure.Data", "TestingStudentKnowledge.Infrastructure.Data", "{BF2BFD55-1993-4B6B-880E-75F694B47C7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingStudentKnowledge.Infrastructure.IoC", "TestingStudentKnowledge.Infrastructure.IoC", "{9F8A0C3D-FAF0-41AA-B75E-C420D33CABCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingStudentKnowledge.UI.MVC", "TestingStudentKnowledge.UI.MVC", "{7A7C01E6-C2BD-421F-BDFB-A73E009392A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingStudentKnowledgeDomain", "TestingStudentKnowledgeDomain\TestingStudentKnowledgeDomain.csproj", "{F6FED4D5-9A74-420F-943B-E58F53758A77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingStudentKnowledgeInfrastructureData", "TestingStudentKnowledgeInfrastructureData\TestingStudentKnowledgeInfrastructureData.csproj", "{B46F0277-B47C-40D0-960D-708C84CAC303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +29,22 @@ Global
 		{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6FED4D5-9A74-420F-943B-E58F53758A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6FED4D5-9A74-420F-943B-E58F53758A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6FED4D5-9A74-420F-943B-E58F53758A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6FED4D5-9A74-420F-943B-E58F53758A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B46F0277-B47C-40D0-960D-708C84CAC303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46F0277-B47C-40D0-960D-708C84CAC303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46F0277-B47C-40D0-960D-708C84CAC303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46F0277-B47C-40D0-960D-708C84CAC303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF0FB6AF-E9A8-4356-A2BB-76EB6474A599} = {7A7C01E6-C2BD-421F-BDFB-A73E009392A9}
+		{F6FED4D5-9A74-420F-943B-E58F53758A77} = {5ABB2FA9-0EB1-4536-B098-37A4615D3A77}
+		{B46F0277-B47C-40D0-960D-708C84CAC303} = {BF2BFD55-1993-4B6B-880E-75F694B47C7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58090D25-D4E9-4D1D-A111-AF5F499DA82B}
