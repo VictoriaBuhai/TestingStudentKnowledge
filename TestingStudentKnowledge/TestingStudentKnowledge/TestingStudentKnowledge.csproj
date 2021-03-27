@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestingStudentKnowledgeInfrastructureData\TestingStudentKnowledgeInfrastructureData.csproj" />
+    <ProjectReference Include="..\TestingStudentKnowledgeInfrastructureIoC\TestingStudentKnowledgeInfrastructureIoC.csproj" />
   </ItemGroup>
 
 </Project>
