@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TestingStudentKnowledgeDomain.Models.Other;
 
 namespace TestingStudentKnowledgeDomain.Models.Users
@@ -14,5 +12,4 @@ namespace TestingStudentKnowledgeDomain.Models.Users
         public string City { get; set; }
         public List<Test> Tests { get; set; }
     }
-    
 }
