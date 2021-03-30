@@ -1,0 +1,17 @@
+﻿@model TestingStudentKnowledgeApplication.ViewModels.TestViewModel
+
+<table id="book" class="table table-bordered table-hover">
+    <thead>
+    <tr class="">
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var test in Model.Tests)
+    {
+        <tr style="height: 60px;">
+            <td>@test.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
