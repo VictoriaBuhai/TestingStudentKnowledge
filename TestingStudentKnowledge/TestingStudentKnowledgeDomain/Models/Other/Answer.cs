@@ -7,6 +7,5 @@ namespace TestingStudentKnowledgeDomain.Models.Other
         public int Id { get; set; }
         public string Description { get; set; }
         public bool IsCorrect { get; set; }
-        public List<Question> Questions { get; set; }
     }
 }

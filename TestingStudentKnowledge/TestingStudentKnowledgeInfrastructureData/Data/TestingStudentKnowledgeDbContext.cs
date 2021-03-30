@@ -1,22 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TestingStudentKnowledgeDomain.Models.Other;
+using TestingStudentKnowledgeDomain.Models.Users;
 
 namespace TestingStudentKnowledgeInfrastructureData.Data
 {
-    public class TestingStudentKnowledgeDbContext
+    public class TestingStudentKnowledgeDbContext : DbContext
     {
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    // Should in future implement optionsBuilder.UseSqlServer ... something like this
-        //}
-        //public DbSet<Admin> Admins { get; set; }
-        //public DbSet<Guest> Guests { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=password");
+        }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set;}
 
-        //public DbSet<User> Users { get; set; }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Admin>().ToTable("Admins");
-        //    modelBuilder.Entity<Guest>().ToTable("Guests");
-        //    modelBuilder.Entity<User>().ToTable("Users");
-        //}
+        public DbSet<Statistic> Statistic { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Test>().ToTable("Tests");
+            modelBuilder.Entity<Question>().ToTable("Questions");
+            modelBuilder.Entity<Statistic>().ToTable("Statistics");
+            modelBuilder.Entity<Answer>().ToTable("Answers");
+            modelBuilder.Entity<Admin>().ToTable("Admins");
+            modelBuilder.Entity<User>().ToTable("Users");
+        }
     }
 }

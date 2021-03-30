@@ -17,7 +17,7 @@ namespace TestingStudentKnowledgeInfrastructureData.Repositories
 
         public IEnumerable<Test> GetTests()
         {
-            throw new NotImplementedException();
+            return _context.Tests;
         }
     }
 }
