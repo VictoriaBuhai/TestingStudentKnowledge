@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using TestingStudentKnowledge.Areas.Identity.Data;
+using TestingStudentKnowledgeInfrastructureData.Data;
 
 namespace TestingStudentKnowledge.Areas.Identity.Pages.Account
 {
