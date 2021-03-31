@@ -24,6 +24,7 @@ namespace TestingStudentKnowledge
             services.AddDbContext<TestingStudentKnowledgeDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddRazorPages();
             RegisterServices(services);
         }
 
@@ -45,7 +46,7 @@ namespace TestingStudentKnowledge
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -53,6 +54,7 @@ namespace TestingStudentKnowledge
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
 

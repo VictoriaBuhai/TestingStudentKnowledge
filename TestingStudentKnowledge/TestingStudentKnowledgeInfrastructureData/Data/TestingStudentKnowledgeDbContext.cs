@@ -16,7 +16,7 @@ namespace TestingStudentKnowledgeInfrastructureData.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tskdb;Username=postgres;Password=***");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tskdb;Username=postgres;Password=sakura123");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
