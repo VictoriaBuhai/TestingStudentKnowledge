@@ -2,7 +2,7 @@
 using TestingStudentKnowledgeApplication.Interfaces;
 using TestingStudentKnowledgeApplication.Services;
 using TestingStudentKnowledgeDomain.Interfaces;
-using TestingStudentKnowledgeInfrastructureData.Repositories;
+
 
 namespace TestingStudentKnowledgeInfrastructureIoC
 {
@@ -12,7 +12,7 @@ namespace TestingStudentKnowledgeInfrastructureIoC
         {
             services.AddScoped<ITestService, TestService>();
 
-            services.AddScoped<ITestRepository, TestRepository>();
+            //services.AddScoped<ITestRepository, TestRepository>();
         }
     }
 }

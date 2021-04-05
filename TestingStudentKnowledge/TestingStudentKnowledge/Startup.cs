@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TestingStudentKnowledgeInfrastructureData.Data;
+using TestingStudentKnowledge.Data;
+//using TestingStudentKnowledgeInfrastructureData.Data;
 using TestingStudentKnowledgeInfrastructureIoC;
 
 namespace TestingStudentKnowledge
@@ -21,11 +22,11 @@ namespace TestingStudentKnowledge
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TestingStudentKnowledgeDbContext>();
+            services.AddDbContext<TSKDbContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("TSKDbContext")));
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddRazorPages();
-            RegisterServices(services);
+           // RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,7 @@ namespace TestingStudentKnowledge
 
             app.UseRouting();
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -58,9 +60,9 @@ namespace TestingStudentKnowledge
             });
         }
 
-        private static void RegisterServices(IServiceCollection services)
-        {
-            DependencyContainer.RegisterServices(services);
-        }
+        //private static void RegisterServices(IServiceCollection services)
+        //{
+        //    DependencyContainer.RegisterServices(services);
+        //}
     }
 }

@@ -1,14 +1,12 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TestingStudentKnowledgeInfrastructureData.Data;
-
-
-
-
+using TestingStudentKnowledge.Areas.Identity.Data;
+using TestingStudentKnowledge.Data;
 
 [assembly: HostingStartup(typeof(TestingStudentKnowledge.Areas.Identity.IdentityHostingStartup))]
 namespace TestingStudentKnowledge.Areas.Identity
@@ -18,12 +16,12 @@ namespace TestingStudentKnowledge.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<TestingStudentKnowledgeDbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("TestingStudentKnowledgeDBContextConnection")));
+                services.AddDbContext<TSKDbContext>(options =>
+                    options.UseNpgsql(
+                        context.Configuration.GetConnectionString("TSKDbContextConnection")));
 
                 services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<TestingStudentKnowledgeDbContext>();
+                    .AddEntityFrameworkStores<TSKDbContext>();
             });
         }
     }
