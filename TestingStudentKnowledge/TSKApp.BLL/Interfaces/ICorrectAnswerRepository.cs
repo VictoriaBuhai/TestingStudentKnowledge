@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TSKApp.BLL.Interfaces
 {
-    class ICorrectAnswerRepository
+    public interface ICorrectAnswerRepository
     {
     }
 }

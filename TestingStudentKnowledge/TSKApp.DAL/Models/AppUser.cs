@@ -12,7 +12,5 @@ namespace TSKApp.DAL.Models
         public string FirstName { get; set; }
         [PersonalData]
         public string LastName { get; set; }
-        [DefaultValue("Student")]
-        public string Role { get; set; }
     }
 }
