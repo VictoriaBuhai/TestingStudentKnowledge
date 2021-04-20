@@ -7,5 +7,8 @@ namespace TSKApp.BLL.Interfaces
     public interface IUsersRepository
     {
         void GetUserById(int userId);
+
+        
+
     }
 }
