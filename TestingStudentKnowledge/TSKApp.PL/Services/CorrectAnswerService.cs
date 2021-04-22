@@ -5,7 +5,7 @@ using TSKApp.BLL;
 
 namespace TSKApp.PL.Services
 {
-    class CorrectAnswerService
+    public class CorrectAnswerService
     {
         private readonly DataManager _dataManager;
         public CorrectAnswerService(DataManager dataManager)

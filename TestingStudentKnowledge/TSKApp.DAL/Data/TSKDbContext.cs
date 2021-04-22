@@ -15,7 +15,7 @@ namespace TSKApp.DAL.Data
         public DbSet<Test> Tests { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<CorrectAnswer> CorrectAnswers { get; set; }
-
+        public DbSet<UserTestAccess> UserTestAccesses { get; set; }
         public TSKDbContext(DbContextOptions<TSKDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -33,7 +33,11 @@ namespace TSKApp.BLL.Implementations
         }
         public void SetTestIntoDb(Test test)
         {
-            _context.Tests.Add(test);
+            if (test.Id == 0)
+                _context.Tests.Add(test);
+            else
+                _context.Entry(test).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

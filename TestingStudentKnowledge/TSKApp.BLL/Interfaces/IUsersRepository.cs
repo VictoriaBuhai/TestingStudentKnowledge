@@ -8,7 +8,6 @@ namespace TSKApp.BLL.Interfaces
     {
         void GetUserById(int userId);
 
-        
-
+        string GetIdByName(string Name);
     }
 }

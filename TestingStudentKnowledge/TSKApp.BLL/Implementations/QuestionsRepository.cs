@@ -25,6 +25,7 @@ namespace TSKApp.BLL.Implementations
         public void SetQuestionIntoDb(Question question)
         {
             _context.Questions.Add(question);
+            _context.SaveChanges();
         }
     }
 }

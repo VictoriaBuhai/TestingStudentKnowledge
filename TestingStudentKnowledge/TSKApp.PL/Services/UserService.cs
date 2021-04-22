@@ -5,7 +5,7 @@ using TSKApp.BLL;
 
 namespace TSKApp.PL.Services
 {
-    class UserService
+    public class UserService
     {
         private readonly DataManager _dataManager;
         public UserService(DataManager dataManager)

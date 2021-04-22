@@ -24,9 +24,9 @@ namespace TSKApp.PL
         }
 
         public AnswerService Answers { get { return _answerService; } }
-       // public TestService Tests { get { return _testService; } }
-       // public QuestionService Questions { get { return _questionService; } }
-       // public UserService Users { get { return _userService; } }
-       // public CorrectAnswerService CorrectAnswers { get { return _correctAnswerService; } }
+        public TestService Tests { get { return _testService; } }
+        public QuestionService Questions { get { return _questionService; } }
+        public UserService Users { get { return _userService; } }
+        public CorrectAnswerService CorrectAnswers { get { return _correctAnswerService; } }
     }
 }

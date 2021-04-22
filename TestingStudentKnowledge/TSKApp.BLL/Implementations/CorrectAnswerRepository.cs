@@ -19,6 +19,7 @@ namespace TSKApp.BLL.Implementations
         public void SetCorrectAnswerIntoDb(CorrectAnswer correct)
         {
             _context.CorrectAnswers.Add(correct);
+            _context.SaveChanges();
         }
         public List<CorrectAnswer> GetAllCorrectAnswersByQuestionId(int Id)
         {

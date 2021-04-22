@@ -11,7 +11,7 @@ namespace TSKApp
     {
         public static void Main(string[] args)
         {
-            // For SeedData (to run)
+            //For SeedData(to run)
             //var host = CreateHostBuilder(args).Build();
             //using var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
             //SeedData.EnsureSeedData(scope.ServiceProvider);
