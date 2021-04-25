@@ -16,4 +16,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TSKApp.PL\TSKApp.PL.csproj" />
+  </ItemGroup>
+
 </Project>

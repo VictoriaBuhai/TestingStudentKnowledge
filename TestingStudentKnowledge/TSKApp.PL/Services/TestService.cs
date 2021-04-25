@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TSKApp.BLL;
+using TSKApp.BLL.Interfaces;
 using TSKApp.DAL.Models;
 using TSKApp.PL.Models;
 
@@ -9,8 +10,8 @@ namespace TSKApp.PL.Services
 {
     public class TestService
     {
-        private readonly DataManager _dataManager;
-        public TestService(DataManager dataManager)
+        private readonly IDataManager _dataManager;
+        public TestService(IDataManager dataManager)
         {
             _dataManager = dataManager;
         }

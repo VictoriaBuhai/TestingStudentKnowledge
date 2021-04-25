@@ -1,16 +1,16 @@
 ﻿using TSKApp.BLL.Interfaces;
 
-namespace TSKApp.BLL
+namespace TSKTests.Mocks
 {
-    public class DataManager : IDataManager
+    public class DataManagerMock : IDataManager
     {
-        public DataManager(IAnswersRepository answersRepository, ITestsRepository testsRepository,
-            IQuestionsRepository quesionsRepository, IUsersRepository usersRepository,
+        public DataManagerMock(IAnswersRepository answersRepository, ITestsRepository testsRepository,
+            IQuestionsRepository questionsRepository, IUsersRepository usersRepository,
             ICorrectAnswerRepository correctAnswerRepository)
         {
             Answers = answersRepository;
             Tests = testsRepository;
-            Questions = quesionsRepository;
+            Questions = questionsRepository;
             Users = usersRepository;
             CorrectAnswers = correctAnswerRepository;
         }
