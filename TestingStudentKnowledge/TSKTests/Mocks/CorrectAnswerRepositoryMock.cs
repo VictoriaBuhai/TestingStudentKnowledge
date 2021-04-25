@@ -6,7 +6,7 @@ using TSKApp.DAL.Models;
 
 namespace TSKTests.Mocks
 {
-    class CorrectAnswerRepository : ICorrectAnswerRepository
+    class CorrectAnswerRepositoryMock : ICorrectAnswerRepository
     {
         public List<CorrectAnswer> GetAllCorrectAnswersByQuestionId(int Id)
         {

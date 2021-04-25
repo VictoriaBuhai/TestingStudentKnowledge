@@ -15,7 +15,7 @@ namespace TSKTests.Mocks
 
         public Test GetTestById(int Id)
         {
-            return new Test();
+            return new Test() {Id = 1};
         }
 
         public List<Test> GetTestsByUserId(string Id)
