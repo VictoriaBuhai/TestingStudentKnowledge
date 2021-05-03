@@ -10,12 +10,16 @@ namespace TSKTests.Mocks
     {
         public List<Test> GetAllTests()
         {
-            return new List<Test>();
+            return new List<Test>()
+            {
+                new Test() {Id = 1, Name = "Test1", timeLimit = 1, User = new AppUser() {FirstName = "Name1", LastName = "Name2"} },
+                new Test() {Id = 2, Name = "Test2", timeLimit = 2, User = new AppUser() {FirstName = "Name3", LastName = "Name4"} }
+            };
         }
 
         public Test GetTestById(int Id)
         {
-            return new Test() {Id = 1};
+           return new Test() { Id = 1, Name = "Test1", timeLimit = 1, User = new AppUser() { FirstName = "Name1", LastName = "Name2" } };
         }
 
         public List<Test> GetTestsByUserId(string Id)

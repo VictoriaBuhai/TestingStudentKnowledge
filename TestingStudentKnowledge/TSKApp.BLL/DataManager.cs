@@ -3,7 +3,7 @@ using TSKApp.BLL.Interfaces;
 
 namespace TSKApp.BLL
 {
-    public class DataManager
+    public class DataManager : IDataManager
     {
         private readonly IAnswersRepository _answersRepository;
         private readonly ITestsRepository _testsRepository;

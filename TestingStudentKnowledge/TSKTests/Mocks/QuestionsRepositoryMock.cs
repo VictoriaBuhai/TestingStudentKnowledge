@@ -8,6 +8,11 @@ namespace TSKTests.Mocks
 {
     class QuestionsRepositoryMock : IQuestionsRepository
     {
+        public Question GetQuestionsById(int questionId)
+        {
+            return new Question();
+        }
+
         public List<Question> GetQuestionsByTestId(int Id)
         {
             return new List<Question>();
