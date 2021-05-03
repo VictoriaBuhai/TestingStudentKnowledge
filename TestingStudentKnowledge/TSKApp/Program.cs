@@ -17,19 +17,20 @@ namespace TSKApp
             //SeedData.EnsureSeedData(scope.ServiceProvider);
             //host.Run();
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+               .AddJsonFile("appsettings.json")
+               .Build();
+
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
             try
             {
-                Log.Information("App starting up");
+                Log.Information("Application starting up");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Application failed to start");
+                Log.Fatal(ex, "The application faild to start correctly");
             }
             finally
             {
@@ -37,11 +38,12 @@ namespace TSKApp
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-        }
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

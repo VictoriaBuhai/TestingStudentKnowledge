@@ -7,7 +7,7 @@ namespace TSKApp.BLL.Interfaces
 {
     public interface IUserTestAccessRepository
     {
-        List<UserTestAccess> GetAllByUserId(int Id);
-        void SetUserTest(UserTestAccess userTestAccess);
+        List<UserTestAccess> GetAllByUserEmail(string email);
+        void SetAllow(UserTestAccess userTestAccess);
     }
 }

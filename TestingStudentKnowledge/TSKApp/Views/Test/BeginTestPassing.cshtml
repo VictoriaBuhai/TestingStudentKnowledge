@@ -1,0 +1,23 @@
+﻿@using TSKApp.PL.Models
+@model TestViewModel
+
+<div class="d-flex justify-content-center" style="margin-top: 150px">
+    <div>
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div style="margin-top: 50px;">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <span>Number of attempts allowed: ###</span>
+                    <div class="d-flex justify-content-center">
+                        <p>Time limit:&nbsp;@Model.timeLimit&nbsp;minutes</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center" style="margin-top: 20px">
+                    <a class="btn" asp-action="TestPassing" asp-route-testId=@ViewBag.testId style="background-color:#6c44db; color:white">Attemp quiz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

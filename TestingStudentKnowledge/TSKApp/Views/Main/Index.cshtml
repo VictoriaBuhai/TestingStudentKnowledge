@@ -1,0 +1,15 @@
+﻿@using TSKApp.PL.Models
+@model List<TestViewModel>
+
+<h1>Main</h1>
+
+<div class="d-flex" style="margin-top: 20px">
+    <div>
+        @foreach (var access in Model)
+        {
+            <div>
+                <a class="d-flex" asp-controller="Test" asp-action="BeginTestPassing" asp-route-testId=@access.Id asp-route-title="@access.Name"><p>#@access.Id |</p>&nbsp;<p>@access.Name |</p>&nbsp;<p>@access.User.FirstName&nbsp;@access.User.LastName</p></a>
+            </div>
+        }
+    </div>
+</div>

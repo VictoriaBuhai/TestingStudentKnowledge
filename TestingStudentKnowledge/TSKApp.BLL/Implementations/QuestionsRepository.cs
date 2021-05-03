@@ -21,7 +21,10 @@ namespace TSKApp.BLL.Implementations
         {
             return _context.Questions.Include(x => x.Answers).Where(x => x.TestId == Id).ToList();
         }
-
+        public Question GetQuestionsById(int questionId)
+        {
+            return _context.Questions.Where(x => x.Id == questionId).FirstOrDefault();
+        }
         public void SetQuestionIntoDb(Question question)
         {
             _context.Questions.Add(question);

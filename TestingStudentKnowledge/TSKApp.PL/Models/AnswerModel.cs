@@ -8,8 +8,13 @@ namespace TSKApp.PL.Models
 {
     public class AnswerViewModel
     {
-
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public bool Correct { get; set; }
     }
+
     public class AnswerEditModel
     {
         [Required]

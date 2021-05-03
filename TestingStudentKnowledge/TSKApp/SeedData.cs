@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
-using TSKApp.BLL.Interfaces;
-using TSKApp.DAL.Data;
-using TSKApp.DAL.Models;
-
-namespace TSKApp
+﻿namespace TSKApp
 {
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+    using TSKApp.BLL.Interfaces;
+    using TSKApp.DAL.Data;
+    using TSKApp.DAL.Models;
+
     public static class SeedData
     {
         public static async Task EnsureSeedData(IServiceProvider serviceProvider)

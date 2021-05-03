@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TSKApp.DAL.Data;
@@ -9,9 +10,10 @@ using TSKApp.DAL.Data;
 namespace TSKApp.DAL.Migrations
 {
     [DbContext(typeof(TSKDbContext))]
-    partial class TSKDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210427032208_Fix userId from UserTestAccess")]
+    partial class FixuserIdfromUserTestAccess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

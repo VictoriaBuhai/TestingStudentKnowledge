@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using TSKApp.BLL;
+using TSKApp.DAL.Models;
 using TSKApp.PL.Services;
 
 namespace TSKApp.PL
@@ -12,6 +14,7 @@ namespace TSKApp.PL
         private readonly QuestionService _questionService;
         private readonly UserService _userService;
         private readonly CorrectAnswerService _correctAnswerService;
+        private readonly UserTestAccessService _userTestAccessService;
 
         public ServicesManager(DataManager dataManager)
         {
@@ -21,6 +24,7 @@ namespace TSKApp.PL
             _questionService = new QuestionService(_dataManager);
             _userService = new UserService(_dataManager);
             _correctAnswerService = new CorrectAnswerService(_dataManager);
+            _userTestAccessService = new UserTestAccessService(_dataManager);
         }
 
         public AnswerService Answers { get { return _answerService; } }
@@ -28,5 +32,6 @@ namespace TSKApp.PL
         public QuestionService Questions { get { return _questionService; } }
         public UserService Users { get { return _userService; } }
         public CorrectAnswerService CorrectAnswers { get { return _correctAnswerService; } }
+        public UserTestAccessService UserTestAccess { get { return _userTestAccessService; } }
     }
 }

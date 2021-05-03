@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TSKApp.BLL.Interfaces;
 using TSKApp.DAL.Data;
@@ -14,14 +16,23 @@ namespace TSKApp.BLL.Implementations
         {
             _context = context;
         }
-        public List<UserTestAccess> GetAllByUserId(int Id)
+        public List<UserTestAccess> GetAllByUserEmail(string email)
         {
-            throw new NotImplementedException();
+            return _context.UserTestAccesses.Include(x => x.User).Include(x => x.Test).ThenInclude(x => x.User).Where(x => x.User.Email == email).ToList();
         }
 
-        public void SetUserTest(UserTestAccess userTestAccess)
+        public void SetAllow(UserTestAccess userTestAccess)
         {
-            throw new NotImplementedException();
+            var check = _context.UserTestAccesses.Where(x => (x.TestId == userTestAccess.TestId && x.UserId == userTestAccess.UserId)).FirstOrDefault();
+            if(userTestAccess.Id != 0 || check != null)
+            {
+                _context.Entry(userTestAccess).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+            else
+            {
+                _context.UserTestAccesses.Add(userTestAccess);
+            }
+            _context.SaveChanges();
         }
     }
 }

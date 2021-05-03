@@ -19,12 +19,12 @@ namespace TSKApp.BLL.Implementations
 
         public List<Test> GetAllTests()
         {
-            return _context.Tests.Include(x => x.Questions).ThenInclude(x => x.Answers).ToList();
+            return _context.Tests.Include(x => x.User).Include(x => x.Questions).ThenInclude(x => x.Answers).ToList();
         }
 
         public Test GetTestById(int Id)
         {
-            return _context.Tests.Include(x => x.Questions).ThenInclude(x => x.Answers).Where(x => x.Id == Id).FirstOrDefault();
+            return _context.Tests.Include(x => x.Questions).ThenInclude(x => x.Answers).Include(x => x.User).Where(x => x.Id == Id).FirstOrDefault();
         }
 
         public List<Test> GetTestsByUserId(string Id)

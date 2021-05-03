@@ -13,7 +13,7 @@ namespace TSKApp.DAL.Models
         public int TestId { get; set; }
         public Test Test { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public AppUser User { get; set; }
 
     }

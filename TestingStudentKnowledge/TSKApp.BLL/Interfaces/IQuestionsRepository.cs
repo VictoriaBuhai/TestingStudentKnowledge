@@ -9,5 +9,6 @@ namespace TSKApp.BLL.Interfaces
     {
         List<Question> GetQuestionsByTestId(int Id);
         void SetQuestionIntoDb(Question question);
+        Question GetQuestionsById(int questionId);
     }
 }

@@ -1,0 +1,30 @@
+﻿@using TSKApp.PL.Models
+@model List<CorrectAnswerViewModel>
+
+<div class="d-flex justify-content-center">
+    <div>
+        <div>
+            <div>
+                <h4>@ViewBag.TestTitle</h4>
+            </div>
+            <div>
+                <h4>Total: @ViewBag.TotalMarks</h4>
+            </div>
+        </div>
+        <div>
+            @foreach (var question in Model)
+            {
+                <div class="d-flex">
+                    <span>@question.QuestionName</span>&nbsp;<div>@if (question.Correct)
+                    {<i class="fas fa-check" style="color: green"></i> }
+                    else
+                    { <i class="fas fa-times" style="color: red"></i>} </div>
+                </div>
+            }
+        </div>
+        <div>
+            <h4>Congratulations on completing the test!</h4>
+        </div>
+        <a class="btn btn-primary" href="/">Back to main</a>
+    </div>
+</div>

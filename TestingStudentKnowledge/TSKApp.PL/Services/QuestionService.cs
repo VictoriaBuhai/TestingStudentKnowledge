@@ -14,6 +14,26 @@ namespace TSKApp.PL.Services
         {
             _dataManager = dataManager;
         }
+        
+        public List<QuestionViewModel> GetQuestionsByTestId(int testId)
+        {
+            List<QuestionViewModel> models = new List<QuestionViewModel>();
+            List<Question> _dbQuestions = _dataManager.Questions.GetQuestionsByTestId(testId);
+            foreach(var question in _dbQuestions)
+            {
+                List<AnswerViewModel> _answerViewModels = new List<AnswerViewModel>();
+                foreach(var answer in question.Answers)
+                {
+                    //[0] because own tests has 1 correct answer
+                    var ansId = _dataManager.CorrectAnswers.GetAllCorrectAnswersByQuestionId(question.Id)[0].AnswerId;
+                    var correct = (ansId == answer.Id) ? true : false;
+                    _answerViewModels.Add(new AnswerViewModel() { Id = answer.Id, Name = answer.Text, Correct = correct });
+                }
+                models.Add(new QuestionViewModel() { Id = question.Id, Name = question.Text, AnswerViewModels = _answerViewModels });
+            }
+            return models;
+        }
+
         public void SaveQuestionEditModelIntoDb(QuestionEditModel _model)
         {
             Question _question;
