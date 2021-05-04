@@ -8,6 +8,7 @@ namespace TSKTests.Mocks
 {
     class QuestionsRepositoryMock : IQuestionsRepository
     {
+        public bool IsSetQuestionIntoDb { get; set; }
         public Question GetQuestionsById(int questionId)
         {
             List<Answer> answers1 = new List<Answer>() { new Answer() { Id = 1, Text = "answer11" }, new Answer() { Id = 2, Text = "answer12" } };
@@ -31,7 +32,14 @@ namespace TSKTests.Mocks
 
         public void SetQuestionIntoDb(Question question)
         {
-            // do nothing
+            if (question.Text == "QuestText" && question.TestId == 1)
+            {
+                IsSetQuestionIntoDb = true;
+            }
+            else
+            {
+                IsSetQuestionIntoDb = false;
+            }    
         }
     }
 }

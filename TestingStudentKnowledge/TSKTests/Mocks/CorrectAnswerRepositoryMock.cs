@@ -8,6 +8,7 @@ namespace TSKTests.Mocks
 {
     class CorrectAnswerRepositoryMock : ICorrectAnswerRepository
     {
+        public bool IsSetCorrectAnswerIntoDb { get; set; }
         public List<CorrectAnswer> GetAllCorrectAnswersByQuestionId(int Id)
         {
             if(Id == 1)
@@ -22,7 +23,14 @@ namespace TSKTests.Mocks
 
         public void SetCorrectAnswerIntoDb(CorrectAnswer correct)
         {
-            // do nothing
+            if(correct.QuestionId == 0 && correct.AnswerId == 0)
+            {
+                IsSetCorrectAnswerIntoDb = true;
+            }
+            else
+            {
+                IsSetCorrectAnswerIntoDb = false;
+            }
         }
     }
 }

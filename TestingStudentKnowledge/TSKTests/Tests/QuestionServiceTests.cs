@@ -54,5 +54,32 @@ namespace TSKTests.Tests
                 Assert.Equal(expected[i].AnswerViewModels[i].Correct, actual[i].AnswerViewModels[i].Correct);
             }
         }
+
+        [Fact]
+        public void SaveQuestionEditModelIntoDbTest()
+        {
+            var questionsRepositoryMock = new QuestionsRepositoryMock();
+            var answersRepositoryMock = new AnswersRepositoryMock();
+            var correctAnswerRepositoryMock = new CorrectAnswerRepositoryMock();
+            var managerMock = new DataManagerMock(answersRepositoryMock, new TestsRepositoryMock(),
+                questionsRepositoryMock, new UsersRepositoryMock(), correctAnswerRepositoryMock, new UserTestAccessRepositoryMock());
+            var questionService = new QuestionService(managerMock);
+            var questionEditModel = new QuestionEditModel()
+            {
+                AnswerEditModels = new List<AnswerEditModel>()
+                {
+                    new AnswerEditModel() {Correct = true, Name = "AnsText"},
+                    new AnswerEditModel() {Correct = true, Name = "AnsText2"}
+                },
+                Id = 1,
+                Name = "QuestText"
+            };
+
+            questionService.SaveQuestionEditModelIntoDb(questionEditModel);
+
+            Assert.True(questionsRepositoryMock.IsSetQuestionIntoDb);
+            Assert.True(answersRepositoryMock.IsSaveAnswer);
+            Assert.True(correctAnswerRepositoryMock.IsSetCorrectAnswerIntoDb);
+        }
     }
 }

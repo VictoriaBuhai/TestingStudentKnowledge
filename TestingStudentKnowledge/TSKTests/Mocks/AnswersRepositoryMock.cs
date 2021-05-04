@@ -8,9 +8,21 @@ namespace TSKTests.Mocks
 {
     class AnswersRepositoryMock : IAnswersRepository
     {
+        public bool IsSaveAnswer { get; set; }
         public void SaveAnswer(Answer _answer)
         {
-            // do nothing
+            if(_answer.Text == "AnsText")
+            {
+                IsSaveAnswer = true;
+            }
+            else if(_answer.Text == "AnsText2")
+            {
+                IsSaveAnswer = true;
+            }
+            else
+            {
+                IsSaveAnswer = false;
+            }
         }
     }
 }
