@@ -14,7 +14,7 @@ namespace TSKTests.Tests
         public void GetCorrectPropertyByQuestionAndAnswerIdsTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var correctAnswerService = new CorrectAnswerService(managerMock);
 
             Assert.True(correctAnswerService.GetCorrectPropertyByQuestionAndAnswerIds(1, 1));
@@ -25,7 +25,7 @@ namespace TSKTests.Tests
         public void GetModelsFromEditToViewTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var correctAnswerService = new CorrectAnswerService(managerMock);
             var answerEditModelResults = new List<CorrectAnswerEditModel>()
             {

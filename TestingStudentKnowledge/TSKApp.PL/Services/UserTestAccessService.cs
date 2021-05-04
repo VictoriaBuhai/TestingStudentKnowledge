@@ -5,13 +5,14 @@
     using System.Text;
     using Microsoft.AspNetCore.Identity;
     using TSKApp.BLL;
+    using TSKApp.BLL.Interfaces;
     using TSKApp.DAL.Models;
     using TSKApp.PL.Models;
 
     public class UserTestAccessService
     {
-        private readonly DataManager _dataManager;
-        public UserTestAccessService(DataManager dataManager)
+        private readonly IDataManager _dataManager;
+        public UserTestAccessService(IDataManager dataManager)
         {
             _dataManager = dataManager;
         }

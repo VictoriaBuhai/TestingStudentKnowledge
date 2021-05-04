@@ -6,13 +6,14 @@ namespace TSKTests.Mocks
     {
         public DataManagerMock(IAnswersRepository answersRepository, ITestsRepository testsRepository,
             IQuestionsRepository questionsRepository, IUsersRepository usersRepository,
-            ICorrectAnswerRepository correctAnswerRepository)
+            ICorrectAnswerRepository correctAnswerRepository, IUserTestAccessRepository userTestAccess)
         {
             Answers = answersRepository;
             Tests = testsRepository;
             Questions = questionsRepository;
             Users = usersRepository;
             CorrectAnswers = correctAnswerRepository;
+            UserTestAccess = userTestAccess;
         }
 
         public IAnswersRepository Answers { get; }
@@ -24,5 +25,7 @@ namespace TSKTests.Mocks
         public IUsersRepository Users { get; }
 
         public ICorrectAnswerRepository CorrectAnswers { get; }
+
+        public IUserTestAccessRepository UserTestAccess { get; }
     }
 }

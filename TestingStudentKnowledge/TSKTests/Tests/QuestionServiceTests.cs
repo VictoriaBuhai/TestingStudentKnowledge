@@ -14,7 +14,7 @@ namespace TSKTests.Tests
         public void GetQuestionsByTestIdTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var questionService = new QuestionService(managerMock);
             var expected = new List<QuestionViewModel>()
             {

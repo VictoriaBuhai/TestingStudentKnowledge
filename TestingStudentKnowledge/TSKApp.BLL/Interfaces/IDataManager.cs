@@ -7,5 +7,6 @@
         IQuestionsRepository Questions { get; }
         IUsersRepository Users { get; }
         ICorrectAnswerRepository CorrectAnswers { get; }
+        IUserTestAccessRepository UserTestAccess { get; }
     }
 }

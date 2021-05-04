@@ -13,7 +13,7 @@ namespace TSKTests.Tests
         public void SetTestEditModelIntoDbTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var testService = new TestService(managerMock);
             var testEditModel = new TestEditModel {Id = 1, timeLimit = 1, Name = "Fake"};
             var adminName = "admin";
@@ -34,7 +34,7 @@ namespace TSKTests.Tests
         public void GetTestsListTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var testService = new TestService(managerMock);
             List<TestViewModel> expected = new List<TestViewModel>()
             {
@@ -61,7 +61,7 @@ namespace TSKTests.Tests
         public void GetTestByIdTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
             var testService = new TestService(managerMock);
             var expected = new TestViewModel() { Id = 1, Name = "Test1", timeLimit = 1, User = new UserViewModel() { FirstName = "Name1", LastName = "Name2" } };
 
