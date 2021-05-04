@@ -10,7 +10,16 @@ namespace TSKTests.Mocks
     {
         public Question GetQuestionsById(int questionId)
         {
-            return new Question();
+            List<Answer> answers1 = new List<Answer>() { new Answer() { Id = 1, Text = "answer11" }, new Answer() { Id = 2, Text = "answer12" } };
+            List<Answer> answers2 = new List<Answer>() { new Answer() { Id = 3, Text = "answer13" }, new Answer() { Id = 4, Text = "answer14" } };
+            if (questionId == 1)
+            {
+                return new Question() { Answers = answers1, Id = 1, Text = "Question1" };
+            }
+            else
+            {
+                return new Question() { Answers = answers2, Id = 2, Text = "Question2" };
+            }
         }
 
         public List<Question> GetQuestionsByTestId(int Id)

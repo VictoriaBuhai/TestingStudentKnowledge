@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using System.Text;
     using TSKApp.BLL;
+    using TSKApp.BLL.Interfaces;
     using TSKApp.DAL.Models;
     using TSKApp.PL.Models;
 
     public class CorrectAnswerService
     {
-        private readonly DataManager _dataManager;
-        public CorrectAnswerService(DataManager dataManager)
+        private readonly IDataManager _dataManager;
+        public CorrectAnswerService(IDataManager dataManager)
         {
             _dataManager = dataManager;
         }
