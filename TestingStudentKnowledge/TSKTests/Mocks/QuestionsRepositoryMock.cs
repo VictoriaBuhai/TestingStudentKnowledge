@@ -15,7 +15,9 @@ namespace TSKTests.Mocks
 
         public List<Question> GetQuestionsByTestId(int Id)
         {
-            return new List<Question>();
+            List<Answer> answers1 = new List<Answer>() { new Answer() { Id = 1, Text = "answer1" }, new Answer() { Id = 3, Text = "answer3" } };
+            List<Answer> answers2 = new List<Answer>() { new Answer() { Id = 4, Text = "answer4" }, new Answer() { Id = 5, Text = "answer5" } };
+            return new List<Question>() { new Question() { Answers = answers1, Id = 1, Text = "Question1" }, new Question() { Answers = answers2, Id = 2, Text = "Question2" } };
         }
 
         public void SetQuestionIntoDb(Question question)
