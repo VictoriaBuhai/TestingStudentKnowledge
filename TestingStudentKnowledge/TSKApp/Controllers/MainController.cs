@@ -36,5 +36,33 @@
             List<TestViewModel> models = _serviceManager.UserTestAccess.GetAllAllowTestsByUserEmail(userEmail);
             return View(models);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PersonalInfo()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var personalInfo = new PersonalInfoViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            };
+            return View(personalInfo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalInfo(PersonalInfoViewModel personalInfoViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                user.FirstName = personalInfoViewModel.FirstName;
+                user.LastName = personalInfoViewModel.LastName;
+                user.Email = personalInfoViewModel.Email;
+
+                await _userManager.UpdateAsync(user);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

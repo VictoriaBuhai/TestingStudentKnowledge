@@ -31,6 +31,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Index">Main</a>
                             </li>
                         }
+                        @if (User.IsInRole("Student"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="PersonalInfo">Personal information</a>
+                            </li>
+                        }
                         <div>
                             <partial name="_LoginPartial.cshtml" />
                         </div>
