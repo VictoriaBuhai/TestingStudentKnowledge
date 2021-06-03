@@ -14,7 +14,7 @@ namespace TSKTests.Tests
         public void GetQuestionsByTestIdTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock(), new StatisticsRepositoryMock());
             var questionService = new QuestionService(managerMock);
             var expected = new List<QuestionViewModel>()
             {
@@ -62,7 +62,7 @@ namespace TSKTests.Tests
             var answersRepositoryMock = new AnswersRepositoryMock();
             var correctAnswerRepositoryMock = new CorrectAnswerRepositoryMock();
             var managerMock = new DataManagerMock(answersRepositoryMock, new TestsRepositoryMock(),
-                questionsRepositoryMock, new UsersRepositoryMock(), correctAnswerRepositoryMock, new UserTestAccessRepositoryMock());
+                questionsRepositoryMock, new UsersRepositoryMock(), correctAnswerRepositoryMock, new UserTestAccessRepositoryMock(), new StatisticsRepositoryMock());
             var questionService = new QuestionService(managerMock);
             var questionEditModel = new QuestionEditModel()
             {

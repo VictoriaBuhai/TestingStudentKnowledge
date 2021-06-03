@@ -21,6 +21,13 @@ namespace TSKApp.BLL.Implementations
             return _context.UserTestAccesses.Include(x => x.User).Include(x => x.Test).ThenInclude(x => x.User).Where(x => x.User.Email == email).ToList();
         }
 
+        public void RemoveAccessByUserIdAndTestId(string userId, int testId)
+        {
+            var access = _context.UserTestAccesses.FirstOrDefault(x => x.UserId == userId && x.TestId == testId);
+            _context.UserTestAccesses.Remove(access);
+            _context.SaveChanges();
+        }
+        
         public void SetAllow(UserTestAccess userTestAccess)
         {
             var check = _context.UserTestAccesses.Where(x => (x.TestId == userTestAccess.TestId && x.UserId == userTestAccess.UserId)).FirstOrDefault();

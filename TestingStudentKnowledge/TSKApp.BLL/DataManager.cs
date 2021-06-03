@@ -11,8 +11,9 @@ namespace TSKApp.BLL
         private readonly IUsersRepository _usersRepository;
         private readonly ICorrectAnswerRepository _correctAnswerRepository;
         private readonly IUserTestAccessRepository _userTestAccessRepository;
+        private readonly IStatisticRepository _statisticRepository;
 
-        public DataManager(IAnswersRepository answersRepository, ITestsRepository testsRepository, IQuestionsRepository quesionsRepository, IUsersRepository usersRepository, ICorrectAnswerRepository correctAnswerRepository, IUserTestAccessRepository userTestAccessRepository)
+        public DataManager(IAnswersRepository answersRepository, ITestsRepository testsRepository, IQuestionsRepository quesionsRepository, IUsersRepository usersRepository, ICorrectAnswerRepository correctAnswerRepository, IUserTestAccessRepository userTestAccessRepository, IStatisticRepository statisticRepository)
         {
             _answersRepository = answersRepository;
             _testsRepository = testsRepository;
@@ -20,6 +21,7 @@ namespace TSKApp.BLL
             _usersRepository = usersRepository;
             _correctAnswerRepository = correctAnswerRepository;
             _userTestAccessRepository = userTestAccessRepository;
+            _statisticRepository = statisticRepository;
         }
         public IAnswersRepository Answers { get { return _answersRepository; } }
         public ITestsRepository Tests { get { return _testsRepository; } }
@@ -27,5 +29,9 @@ namespace TSKApp.BLL
         public IUsersRepository Users { get { return _usersRepository; } }
         public ICorrectAnswerRepository CorrectAnswers { get { return _correctAnswerRepository; } }
         public IUserTestAccessRepository UserTestAccess { get { return _userTestAccessRepository; } }
+        public IStatisticRepository Statistics
+        {
+            get { return _statisticRepository;  }
+        }
     }
 }

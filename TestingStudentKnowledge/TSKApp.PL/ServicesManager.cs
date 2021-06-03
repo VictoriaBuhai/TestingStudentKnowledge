@@ -15,10 +15,12 @@ namespace TSKApp.PL
         private readonly UserService _userService;
         private readonly CorrectAnswerService _correctAnswerService;
         private readonly UserTestAccessService _userTestAccessService;
+        private readonly StatisticService _statisticService;
 
         public ServicesManager(DataManager dataManager)
         {
             _dataManager = dataManager;
+            _statisticService = new StatisticService(dataManager);
             _answerService = new AnswerService(_dataManager);
             _testService = new TestService(_dataManager);
             _questionService = new QuestionService(_dataManager);
@@ -33,5 +35,9 @@ namespace TSKApp.PL
         public UserService Users { get { return _userService; } }
         public CorrectAnswerService CorrectAnswers { get { return _correctAnswerService; } }
         public UserTestAccessService UserTestAccess { get { return _userTestAccessService; } }
+        public StatisticService Statistics
+        {
+            get { return _statisticService; }
+        }
     }
 }

@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using TSKApp.DAL.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore.Migrations
+@inject UserManager<AppUser> _userManager
+@inject SignInManager<AppUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,35 +16,56 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="background-color: #322d96;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="height:140px;background-color: #37346b; color: white;">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Main" asp-action="Index">TestingStudentKnowledge</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div class="d-flex">
+                        <div>
+                            @if (_userManager.FindByEmailAsync(User.Identity.Name).Result.Avatar != null)
+                            {
+                                <img style='width:120px; height:120px; border-radius: 80px; margin-left: 60px ;margin-right: 30px' src="data:image/jpeg;base64,@(Convert.ToBase64String(_userManager.FindByEmailAsync(User.Identity.Name).Result.Avatar))"/>
+                            }
+                            else
+                            {
+                                <img src="~/any/DefaultAvatar.png" style='width:120px; height:120px; border-radius: 80px; margin-left: 60px ;margin-right: 30px'/>
+                            }
+                        </div>
+                        <div style="margin-top: 20px;height: 30px; margin-top: 42px;">
+                            @{ var firstName = _userManager.FindByEmailAsync(User.Identity.Name).Result.FirstName;
+                                var lastName = _userManager.FindByEmailAsync(User.Identity.Name).Result.LastName; }
+                            <h4>@firstName @lastName</h4>
+                        </div>
+                    </div>
+                    
+                }
+                else
+                {
+                    <a class="navbar-brand text-white" asp-controller="Main" asp-action="Index">Testing Student Knowledge</a>
+                }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="color: white;">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="color: white;margin-left: 150px;">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.IsInRole("Admin"))
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Test" asp-action="MyTests">MyTests</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Index">Main</a>
-                            </li>
-                        }
-                        @if (User.IsInRole("Student"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="PersonalInfo">Personal information</a>
-                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Test" asp-action="MyTests">Tests</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Main" asp-action="Index">Tests</a>
+                                </li>
+                            }
                         }
                         <div>
-                            <partial name="_LoginPartial.cshtml" />
+                            <partial name="_LoginPartial.cshtml"/>
                         </div>
                     </ul>
                 </div>
@@ -51,9 +78,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - TSKApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted" style="background-color: #37346b;">
+        <div class="container" style=" color: white;">
+            &copy; 2021 - TSKApp
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -42,6 +42,7 @@ namespace TSKApp.Areas.Identity
                 services.AddTransient<IUsersRepository, UsersRepository>();
                 services.AddTransient<ICorrectAnswerRepository, CorrectAnswerRepository>();
                 services.AddTransient<IUserTestAccessRepository, UserTestAccessRepository>();
+                services.AddTransient<IStatisticRepository, StatisticRepository>();
 
                 //datamanager
                 services.AddScoped<DataManager>();

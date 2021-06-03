@@ -18,6 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.14" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.14" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Roslynator.Analyzers" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
@@ -43,6 +45,10 @@
     <ProjectReference Include="..\TSKApp.BLL\TSKApp.BLL.csproj" />
     <ProjectReference Include="..\TSKApp.DAL\TSKApp.DAL.csproj" />
     <ProjectReference Include="..\TSKApp.PL\TSKApp.PL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\any" />
   </ItemGroup>
 
 </Project>

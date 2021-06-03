@@ -18,6 +18,7 @@ namespace TSKApp.PL.Models
     public class AnswerEditModel
     {
         [Required]
+        [DisplayName("Answer")]
         public string Name { get; set; }
         [DefaultValue(null)]
         public int questionId { get; set; }

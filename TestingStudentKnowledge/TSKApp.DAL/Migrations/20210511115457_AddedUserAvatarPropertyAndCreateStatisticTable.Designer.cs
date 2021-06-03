@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TSKApp.DAL.Data;
@@ -9,9 +10,10 @@ using TSKApp.DAL.Data;
 namespace TSKApp.DAL.Migrations
 {
     [DbContext(typeof(TSKDbContext))]
-    partial class TSKDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210511115457_AddedUserAvatarPropertyAndCreateStatisticTable")]
+    partial class AddedUserAvatarPropertyAndCreateStatisticTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,8 +184,8 @@ namespace TSKApp.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<byte[]>("Avatar")
-                        .HasColumnType("bytea");
+                    b.Property<string>("AvatarPathOrUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -333,12 +335,12 @@ namespace TSKApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("PassToDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("timeLimit")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

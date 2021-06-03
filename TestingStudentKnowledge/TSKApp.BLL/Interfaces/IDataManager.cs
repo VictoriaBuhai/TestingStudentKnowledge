@@ -8,5 +8,6 @@
         IUsersRepository Users { get; }
         ICorrectAnswerRepository CorrectAnswers { get; }
         IUserTestAccessRepository UserTestAccess { get; }
+        IStatisticRepository Statistics { get; }
     }
 }

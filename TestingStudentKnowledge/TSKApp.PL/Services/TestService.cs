@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Text;
 using TSKApp.BLL;
 using TSKApp.BLL.Interfaces;
@@ -22,16 +23,20 @@ namespace TSKApp.PL.Services
             List<TestViewModel> models = new List<TestViewModel>();
             foreach(var test in tests)
             {
-                models.Add(new TestViewModel() { Id = test.Id, Name = test.Name, User = new UserViewModel() { FirstName = test.User.FirstName, LastName = test.User.LastName }, timeLimit = test.timeLimit });
+                models.Add(new TestViewModel() { Id = test.Id, Name = test.Name, User = new UserViewModel() { Id = test.User.Id, FirstName = test.User.FirstName, LastName = test.User.LastName }, PassToDate = test.PassToDate, Created = test.Created });
             }
             return models;
         }
 
+        public void RemoveTestById(int Id)
+        {
+            _dataManager.Tests.RemoveTestById(Id);
+        }
         public TestViewModel GetTestById(int testId)
         {
             var test = _dataManager.Tests.GetTestById(testId);
-            UserViewModel umodel = new UserViewModel() { FirstName = test.User.FirstName, LastName = test.User.LastName };
-            TestViewModel tmodel = new TestViewModel() { Id = test.Id, Name = test.Name, timeLimit = test.timeLimit, User = umodel };
+            UserViewModel umodel = new UserViewModel() { Id = test.UserId, FirstName = test.User.FirstName, LastName = test.User.LastName, Avatar = test.User.Avatar };
+            TestViewModel tmodel = new TestViewModel() { Id = test.Id, Name = test.Name, PassToDate = test.PassToDate, User = umodel, Created = test.Created };
             return tmodel;
         }
 
@@ -42,7 +47,7 @@ namespace TSKApp.PL.Services
             {
                 test = _dataManager.Tests.GetTestById(_model.Id);
                 test.Name = _model.Name;
-                test.timeLimit = _model.timeLimit;
+                test.PassToDate = _model.PassToDate;
             }
             else
             {
@@ -51,7 +56,7 @@ namespace TSKApp.PL.Services
                 {
                     Name = _model.Name,
                     UserId = userId,
-                    timeLimit = _model.timeLimit
+                    PassToDate = _model.PassToDate,
                 };
             }
             _dataManager.Tests.SetTestIntoDb(test);

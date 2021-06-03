@@ -32,31 +32,49 @@
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
             return View();
-        }
+        }*/
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult MyTests()
+        public IActionResult MyTests(string error = null)
         {
+            ViewBag.AllowError = error;
             var tests = _serviceManager.Tests.GetTestsList();
             return View(tests);
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [Route("/Test/Delete/{Id:int}")]
+        public IActionResult Delete(int Id)
+        {
+            _serviceManager.Tests.RemoveTestById(Id);
+            return Ok();
+        }
+        
         [HttpGet]
         [Authorize(Roles = "Student")]
-        public IActionResult TestPassed(int totalMarks)
+        public async Task<IActionResult> TestPassed(int totalMarks)
         {
             List<CorrectAnswerEditModel> rememberPreviousQuestionResult = _httpContextAccessor.HttpContext.Session.Get<List<CorrectAnswerEditModel>>("ListOfQuestionsResult");
             _httpContextAccessor.HttpContext.Session.Remove("ListOfQuestionsResult");
 
             var testId = rememberPreviousQuestionResult[0].TestId;
-            var testTitle = _serviceManager.Tests.GetTestById(testId).Name;
+            var test = _serviceManager.Tests.GetTestById(testId);
+            
+            AppUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            StatisticModel statModel = new StatisticModel(){ Test = test, User = user, Result = totalMarks };
+            _serviceManager.Statistics.SetIntoDb(statModel);
+
+            _serviceManager.UserTestAccess.RemoveAccessByUserIdAndTestId(user.Id, testId);
+            
             ViewBag.TotalMarks = totalMarks;
             ViewBag.TestId = testId; //not used
-            ViewBag.TestTitle = testTitle;
+            ViewBag.TestTitle = test.Name;
+            
             var models = _serviceManager.CorrectAnswers.GetModelsFromEditToView(rememberPreviousQuestionResult);
             return View(models);
         }
@@ -141,8 +159,16 @@
         public async Task<IActionResult> Allow(int testId, string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
-            _serviceManager.UserTestAccess.SetAllow(testId, user.Id);
-            return RedirectToAction("MyTests");
+            string error = null;
+            if (user == null)
+            {
+                error = "Student not found"; 
+            }
+            else
+            {
+                _serviceManager.UserTestAccess.SetAllow(testId, user.Id);
+            }
+            return RedirectToAction("MyTests", new { error = error });
         }
 
         [HttpPost]
@@ -158,22 +184,41 @@
         [Authorize(Roles = "Admin")]
         public IActionResult StartCreateQuestion(int testId)
         {
-            ViewBag.testId = testId;
+            //ViewBag.testId = testId;
             var _Model = new QuestionEditModel();
+            _Model.Id = testId;
             return View(_Model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult StartCreateQuestion(int testId, QuestionEditModel _model, Actions actionType, int removingAnswerId)
+        public IActionResult StartCreateQuestion(QuestionEditModel _model, Actions actionType, int removingAnswerId)
         {
-            ViewBag.testId = testId;
-            _model.Id = testId;
+            int truthCheckCounter = 0;
+            foreach (var prop in _model.AnswerEditModels)
+            {
+                if (prop.Correct)
+                {
+                    truthCheckCounter++;
+                }
+                if (truthCheckCounter > 1)
+                {
+                    ModelState.AddModelError("Truth answers greater then 1", "There can be only one correct answer");
+                    return View(_model);
+                }
+            }
+            //this.ViewBag.testId = testId;
+            //_model.Id = testId;
             switch (actionType)
             {
                 case Actions.MoreQuestion:
+                    if (truthCheckCounter == 0)
+                    {
+                        ModelState.AddModelError("Correct not selected", "The correct answer is not selected");
+                        return View(_model);
+                    }
                     _serviceManager.Questions.SaveQuestionEditModelIntoDb(_model);
-                    _model = new QuestionEditModel();
+                    _model = new QuestionEditModel() { Id = _model.Id };
                     ModelState.Clear();
                     break;
                 case Actions.MoreAnswer:
@@ -188,8 +233,14 @@
                     }
                     break;
                 case Actions.End:
+                    if (truthCheckCounter == 0)
+                    {
+                        ModelState.AddModelError("Correct not selected", "The correct answer is not selected");
+                        return View(_model);
+                    }
                     _serviceManager.Questions.SaveQuestionEditModelIntoDb(_model);
-                    return RedirectToAction("EndCreating", new { testId });
+                    //return RedirectToAction("EndCreating", new { testId=_model.Id });
+                    return RedirectToAction("MyTests");
                     break;
                 default:
                     break;

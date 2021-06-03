@@ -29,7 +29,7 @@ namespace TSKTests.Mocks
                     Id = 1,
                     Name = "Test1",
                     Questions = new List<Question>(),
-                    timeLimit = 10,
+                    PassToDate = DateTime.Today,
                     User = appUser,
                     UserId = appUser.Id
                 } },
@@ -38,7 +38,7 @@ namespace TSKTests.Mocks
                     Id = 2,
                     Name = "Test2",
                     Questions = new List<Question>(),
-                    timeLimit = 10,
+                    PassToDate = DateTime.Today,
                     User = appUser,
                     UserId = appUser.Id
                 } }
@@ -48,6 +48,11 @@ namespace TSKTests.Mocks
         public void SetAllow(UserTestAccess userTestAccess)
         {
            IsSetAllow = userTestAccess != null;
+        }
+
+        public void RemoveAccessByUserIdAndTestId(string userId, int testI)
+        {
+            throw new NotImplementedException();
         }
     }
 }

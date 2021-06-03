@@ -10,8 +10,9 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int timeLimit { get; set; }
+        public DateTime PassToDate { get; set; }
         public UserViewModel User { get; set; }
+        public DateTime Created { get; set; }
     }
     public class TestEditModel
     {
@@ -21,6 +22,6 @@
         [DefaultValue("")]
         public string Name { get; set; }
         [DefaultValue(null)]
-        public int timeLimit { get; set; }
+        public DateTime PassToDate { get; set; }
     }
 }

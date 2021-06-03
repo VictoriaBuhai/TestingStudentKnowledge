@@ -17,6 +17,13 @@ namespace TSKApp.BLL.Implementations
             _context = context;
         }
 
+        public void RemoveTestById(int Id)
+        {
+            var test = _context.Tests.FirstOrDefault(x => x.Id == Id);
+            _context.Tests.Remove(test);
+            _context.SaveChanges();
+        }
+
         public List<Test> GetAllTests()
         {
             return _context.Tests.Include(x => x.User).Include(x => x.Questions).ThenInclude(x => x.Answers).ToList();
@@ -34,9 +41,14 @@ namespace TSKApp.BLL.Implementations
         public void SetTestIntoDb(Test test)
         {
             if (test.Id == 0)
+            {
+                test.Created = DateTime.Now;
                 _context.Tests.Add(test);
+            }
             else
+            {
                 _context.Entry(test).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
             _context.SaveChanges();
         }
     }

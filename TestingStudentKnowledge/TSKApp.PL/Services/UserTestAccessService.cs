@@ -22,14 +22,19 @@
             _dataManager.UserTestAccess.SetAllow(userTestAccess);
         }
 
+        public void RemoveAccessByUserIdAndTestId(string userId, int testId)
+        {
+            _dataManager.UserTestAccess.RemoveAccessByUserIdAndTestId(userId, testId);
+        }
+
         public List<TestViewModel> GetAllAllowTestsByUserEmail(string userEmail)
         {
             List<TestViewModel> testViewModels = new List<TestViewModel>();
             List<UserTestAccess> _dbModelsAccess = _dataManager.UserTestAccess.GetAllByUserEmail(userEmail);
             foreach(var access in _dbModelsAccess)
             {
-                UserViewModel user = new UserViewModel() { FirstName = access.Test.User.FirstName, LastName = access.Test.User.LastName };
-                testViewModels.Add(new TestViewModel() { Id = access.TestId, Name = access.Test.Name, timeLimit = access.Test.timeLimit, User = user });
+                UserViewModel user = new UserViewModel() { Id= access.UserId, FirstName = access.Test.User.FirstName, LastName = access.Test.User.LastName };
+                testViewModels.Add(new TestViewModel() { Id = access.TestId, Name = access.Test.Name, PassToDate = access.Test.PassToDate, User = user });
             }
             return testViewModels;
         }

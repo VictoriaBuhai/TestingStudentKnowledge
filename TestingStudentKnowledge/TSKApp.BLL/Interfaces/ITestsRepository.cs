@@ -11,5 +11,6 @@ namespace TSKApp.BLL.Interfaces
         List<Test> GetTestsByUserId(string Id);
         List<Test> GetAllTests();
         void SetTestIntoDb(Test test);
+        void RemoveTestById(int Id);
     }
 }

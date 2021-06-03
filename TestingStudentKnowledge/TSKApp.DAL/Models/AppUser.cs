@@ -10,7 +10,12 @@ namespace TSKApp.DAL.Models
     {
         [PersonalData]
         public string FirstName { get; set; }
+        
         [PersonalData]
         public string LastName { get; set; }
+        
+        [PersonalData]
+        [DefaultValue(null)]
+        public byte[] Avatar { get; set; }
     }
 }

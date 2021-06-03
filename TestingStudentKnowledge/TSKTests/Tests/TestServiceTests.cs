@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TSKApp.PL.Models;
 using TSKApp.PL.Services;
 using TSKTests.Mocks;
@@ -13,9 +14,9 @@ namespace TSKTests.Tests
         public void SetTestEditModelIntoDbTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock(), new StatisticsRepositoryMock());
             var testService = new TestService(managerMock);
-            var testEditModel = new TestEditModel {Id = 1, timeLimit = 1, Name = "Fake"};
+            var testEditModel = new TestEditModel {Id = 1, PassToDate = DateTime.Today, Name = "Fake"};
             var adminName = "admin";
             var expectedTestId = 1;
 
@@ -34,12 +35,12 @@ namespace TSKTests.Tests
         public void GetTestsListTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock(), new StatisticsRepositoryMock());
             var testService = new TestService(managerMock);
             List<TestViewModel> expected = new List<TestViewModel>()
             {
-                new TestViewModel() {Id = 1, Name = "Test1", timeLimit = 1, User = new UserViewModel() {FirstName = "Name1", LastName = "Name2"} },
-                new TestViewModel() {Id = 2, Name = "Test2", timeLimit = 2, User = new UserViewModel() {FirstName = "Name3", LastName = "Name4"} }
+                new TestViewModel() {Id = 1, Name = "Test1", PassToDate = DateTime.Today, User = new UserViewModel() {FirstName = "Name1", LastName = "Name2"} },
+                new TestViewModel() {Id = 2, Name = "Test2", PassToDate = DateTime.Today, User = new UserViewModel() {FirstName = "Name3", LastName = "Name4"} }
             };
 
             var actual = testService.GetTestsList();
@@ -50,7 +51,7 @@ namespace TSKTests.Tests
             {
                 Assert.Equal(expected[i].Id, actual[i].Id);
                 Assert.Equal(expected[i].Name, actual[i].Name);
-                Assert.Equal(expected[i].timeLimit, actual[i].timeLimit);
+                Assert.Equal(expected[i].PassToDate, actual[i].PassToDate);
                 Assert.Equal(expected[i].User.FirstName, actual[i].User.FirstName);
                 Assert.Equal(expected[i].User.LastName, actual[i].User.LastName);
             }
@@ -61,15 +62,15 @@ namespace TSKTests.Tests
         public void GetTestByIdTest()
         {
             var managerMock = new DataManagerMock(new AnswersRepositoryMock(), new TestsRepositoryMock(),
-                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock());
+                new QuestionsRepositoryMock(), new UsersRepositoryMock(), new CorrectAnswerRepositoryMock(), new UserTestAccessRepositoryMock(), new StatisticsRepositoryMock());
             var testService = new TestService(managerMock);
-            var expected = new TestViewModel() { Id = 1, Name = "Test1", timeLimit = 1, User = new UserViewModel() { FirstName = "Name1", LastName = "Name2" } };
+            var expected = new TestViewModel() { Id = 1, Name = "Test1", PassToDate = DateTime.Today, User = new UserViewModel() { FirstName = "Name1", LastName = "Name2" } };
 
             var actual = testService.GetTestById(testId);
 
             Assert.Equal(expected.Id, actual.Id);
             Assert.Equal(expected.Name, actual.Name);
-            Assert.Equal(expected.timeLimit, actual.timeLimit);
+            Assert.Equal(expected.PassToDate, actual.PassToDate);
             Assert.Equal(expected.User.FirstName, actual.User.FirstName);
             Assert.Equal(expected.User.LastName, actual.User.LastName);
 
